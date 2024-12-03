@@ -12,10 +12,10 @@ import pyspark.sql.functions as F
 df = sf_public_salaries.select(
     "employeename",  # Selecting the employee name column
     F.round(df.basepay, 2)  # Rounding the base pay to 2 decimal places
-).distinct()  # Ensuring there are no duplicates in the result
-.filter(
+).distinct().filter(
     F.lower(df.jobtitle).like("%captain%")  # Filtering for job titles containing 'captain' (case-insensitive)
 )
+# Ensuring there are no duplicates in the result
 
 # Display the resulting DataFrame with employee names and their rounded base pay for captains
 df.show()
